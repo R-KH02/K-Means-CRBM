@@ -2,7 +2,7 @@
 warning off images:imshow:magnificationMustBeFitForDockedFigure
 close all
 clear
-
+addpath('../Display_utils');
 addpath(genpath('whitening'));
 addpath(genpath('maxpooling'));
 addpath(genpath('minFunc'));
@@ -100,20 +100,19 @@ end
 
 
 
-
 if 0
     params = cell(1,numofLayers);
     A = cell(1,numofLayers);
     c = 0;
-    for fs1 = [:]
+    for fs1 = [5,7]
         Opt{1, 1}.ws = fs1;
-        for st1 = [:]
+        for st1 = [0.005, 0.01, 0.03]
             Opt{1, 1}.pbias = st1;
-            for pbias_lb = [:]
+            for pbias_lb = [0.001 0.01 0.1]
                 Opt{1, 1}.pbias_lb = pbias_lb;
-                for beta = [:]
+                for beta = [0.01 0.1 0.5 0.9]
                     Opt{1, 1}.beta = beta;
-                    for L2reg1 = [:]
+                    for L2reg1 = [1e-2 1e-3]
                         Opt{1, 1}.l2reg = L2reg1;
                         Opt{1,1}.classrbm = 1;
                         c = c + 1;
